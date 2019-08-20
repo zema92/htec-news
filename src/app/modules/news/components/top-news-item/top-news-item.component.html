@@ -2,7 +2,7 @@
 	<div class="jumbotron article__jumbotron d-flex flex-wrap justify-content-end w-100">
 		<div class="w-100">
 			<h4 class="article__title">{{ article.title }}</h4>
-			<ng-container *ngIf="article.urlToImage; else noImgTemplate">
+			<ng-container *ngIf="article?.urlToImage; else noImgTemplate">
 				<div class="text-center">
 					<img class="img-fluid w-100" alt="" [src]="article.urlToImage">
 				</div>

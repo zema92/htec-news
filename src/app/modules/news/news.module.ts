@@ -11,6 +11,7 @@ import { CategoriesNewsComponent } from './components/categories-news/categories
 
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { CategoriesNewsPageComponent } from './pages/categories-news-page/categories-news-page.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 		TopNewsListComponent,
 		TopNewsItemComponent,
 		TopNewsDetailsComponent,
-		CategoriesNewsComponent
+		CategoriesNewsComponent,
+		CategoriesNewsPageComponent
 	],
 	imports: [
 		CommonModule,

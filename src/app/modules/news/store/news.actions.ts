@@ -3,7 +3,9 @@ import { NewsModel } from 'src/app/core/models/news.model';
 import { ArticleModel } from 'src/app/core/models/article.model';
 
 export const CHANGE_COUNTRY = '[News] Change Country';
+export const CHANGE_CATEGORY = '[News] Change Category';
 export const FETCH_NEWS_BY_COUNTRY = '[News] Fetch News By Country';
+export const FETCH_NEWS_BY_COUNTRY_AND_CATEGORY = '[News] Fetch News By Country And Category';
 export const STORE_NEWS = '[News] Store News';
 export const SHOW_ARTICLE_DETAILS = '[News] Show Article Details';
 export const HIDE_ARTICLE_DETAILS = '[News] Hide Article Details';
@@ -16,10 +18,22 @@ export class ChangeCountry implements Action {
 	constructor(public payload: string) {}
 }
 
+export class ChangeCategory implements Action {
+	readonly type = CHANGE_CATEGORY;
+
+	constructor(public payload: string) {}
+}
+
 export class FetchTopNewsByCountry implements Action {
 	readonly type = FETCH_NEWS_BY_COUNTRY;
 
 	constructor(public payload: string) {}
+}
+
+export class FetchTopFiveNewsByCountryAndCategory implements Action {
+	readonly type = FETCH_TOP_FIVE_NEWS_BY_COUNTRY_AND_CATEGORY;
+
+	constructor(public payload: { country: string, category: string }) {}
 }
 
 export class StoreTopNews implements Action {
@@ -40,15 +54,17 @@ export class HideArticleDetails implements Action {
 	constructor() {}
 }
 
-export class FetchTopFiveNewsByCountryAndCategory implements Action {
-	readonly type = FETCH_TOP_FIVE_NEWS_BY_COUNTRY_AND_CATEGORY;
+export class FetchTopNewsByCountryAndCategory implements Action {
+	readonly type = FETCH_NEWS_BY_COUNTRY_AND_CATEGORY;
 
 	constructor(public payload: { country: string, category: string }) {}
 }
 
 export type NewsActionTypes =
 	ChangeCountry |
+	ChangeCategory |
 	FetchTopNewsByCountry |
+	FetchTopNewsByCountryAndCategory |
 	FetchTopFiveNewsByCountryAndCategory |
 	StoreTopNews |
 	ShowArticleDetails |

@@ -37,4 +37,16 @@ export class NewsEffects {
 		)
 	);
 
+	@Effect()
+	fetchNewsByCountryAndCategory$ = this.actions$.pipe(
+		ofType(NewsActions.FETCH_NEWS_BY_COUNTRY_AND_CATEGORY),
+		mergeMap((effect: NewsActions.FetchTopNewsByCountryAndCategory) =>
+			this.newsService
+				.getTopNewsByCountryAndCategory(effect.payload.country, effect.payload.category)
+				.pipe(
+					map((news: NewsModel) => ({ type: NewsActions.STORE_NEWS, payload: news }))
+				)
+		)
+	);
+
 }

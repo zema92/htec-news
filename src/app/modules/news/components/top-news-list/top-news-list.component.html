@@ -1,6 +1,6 @@
 <div class="articles">
 	<div class="container-fluid mt-5">
-		<h1 class="mb-4">Top news from {{ country === 'us' ? 'United States of America' : 'Great Britain' }}:</h1>
+		<h1 class="mb-4">Top {{ category }} news from {{ country === 'us' ? 'United States of America' : 'Great Britain' }}:</h1>
 		<div class="row">
 			<ng-container *ngFor="let article of articles; trackBy: article?.title">
 				<div class="col-xl-4 col-lg-6 col-12 d-flex">

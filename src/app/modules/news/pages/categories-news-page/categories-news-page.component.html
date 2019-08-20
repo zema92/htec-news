@@ -1,6 +1,7 @@
 <app-top-news-list
 	*ngIf="!loading; else dataLoading"
 	[articles]="articles"
+	[category]="category"
 	[country]="country"
 	(showArticleDetails)="onShowArticleDetails($event)"
 ></app-top-news-list>
@@ -9,4 +10,3 @@
 		<span class="sr-only">Loading...</span>
 	</div>
 </ng-template>
-

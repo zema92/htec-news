@@ -1,4 +1,5 @@
 <app-categories-news
+	*ngIf="!hideCategories"
 	[country]="country"
 	[articles]="articles"
 	[loading]="loading"
@@ -6,3 +7,4 @@
 	(showArticleDetails)="onShowArticleDetails($event)"
 	(showNewsForCategory)="onShowNewsForCategory($event)"
 ></app-categories-news>
+<router-outlet></router-outlet>

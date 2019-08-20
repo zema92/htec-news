@@ -20,6 +20,7 @@ export class CategoriesNewsComponent implements OnInit {
 
 	@Output() private fetchNewsForCategory: EventEmitter<string> = new EventEmitter<string>();
 	@Output() private showArticleDetails: EventEmitter<ArticleModel> = new EventEmitter<ArticleModel>();
+	@Output() private showNewsForCategory: EventEmitter<string> = new EventEmitter<string>();
 
 	public itemsPerSlide: number = 3;
 	public singleSlideOffset: boolean = true;
@@ -41,6 +42,11 @@ export class CategoriesNewsComponent implements OnInit {
 
 	public onMore(article: ArticleModel): void {
 		this.showArticleDetails.emit(article);
+	}
+
+	public onShowNewsForCategory(event: MouseEvent, category: string): void {
+		event.stopPropagation();
+		this.showNewsForCategory.emit(category);
 	}
 
 }

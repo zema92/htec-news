@@ -4,6 +4,7 @@ import { NewsPageComponent } from './pages/news-page/news-page.component';
 import { CategoriesPageComponent } from './pages/categories-page/categories-page.component';
 import { SearchPageComponent } from './pages/search-page/search-page.component';
 import { NgModule } from '@angular/core';
+import { CategoriesNewsPageComponent } from './pages/categories-news-page/categories-news-page.component';
 
 const routes: Routes = [
 	{
@@ -17,7 +18,13 @@ const routes: Routes = [
 	},
 	{
 		path: 'categories',
-		component: CategoriesPageComponent
+		component: CategoriesPageComponent,
+		children: [
+			{
+				path: 'news',
+				component: CategoriesNewsPageComponent
+			}
+		]
 	},
 	{
 		path: 'search',
@@ -31,6 +38,6 @@ const routes: Routes = [
 
 @NgModule({
 	imports: [RouterModule.forChild(routes)],
-	exports: [RouterModule]
+exports: [RouterModule]
 })
 export class NewsRoutingModule { }

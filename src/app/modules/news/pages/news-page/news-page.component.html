@@ -1,12 +1,15 @@
-<app-top-news-list
-	*ngIf="!loading; else dataLoading"
-	[articles]="articles"
-	[country]="country"
-	(showArticleDetails)="onShowArticleDetails($event)"
-></app-top-news-list>
-<ng-template #dataLoading>
-	<div class="spinner-border" role="status">
-		<span class="sr-only">Loading...</span>
-	</div>
-</ng-template>
+<ng-container *ngIf="!hideTopNews">
+	<app-top-news-list
+		*ngIf="!loading; else dataLoading"
+		[articles]="articles"
+		[country]="country"
+		(showArticleDetails)="onShowArticleDetails($event)"
+	></app-top-news-list>
+	<ng-template #dataLoading>
+		<div class="spinner-border" role="status">
+			<span class="sr-only">Loading...</span>
+		</div>
+	</ng-template>
+</ng-container>
+<router-outlet></router-outlet>
 

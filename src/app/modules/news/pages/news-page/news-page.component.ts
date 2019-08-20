@@ -5,7 +5,7 @@ import * as NewsActions from '../../store/news.actions';
 import { Subscription } from 'rxjs';
 import { selectCountry, selectArticles, selectLoading } from '../../store/news.selectors';
 import { ArticleModel } from 'src/app/core/models/article.model';
-import { Router } from '@angular/router';
+import { Router, NavigationStart, RouterEvent } from '@angular/router';
 
 @Component({
 	selector: 'app-news-page',
@@ -17,14 +17,22 @@ export class NewsPageComponent implements OnInit, OnDestroy {
 	private stateCountrySubscription: Subscription;
 	private stateArticlesSubscription: Subscription;
 	private stateLoadingSubscription: Subscription;
+	private routerSubscription: Subscription;
 
 	public articles: ArticleModel[];
 	public country: string;
 	public loading: boolean;
+	public hideTopNews: boolean;
 
 	constructor(private store: Store<fromApp.AppState>, private router: Router) { }
 
 	ngOnInit() {
+		this.hideTopNews = this.router.url.includes('news-details');
+		this.routerSubscription = this.router.events.subscribe((event: RouterEvent) => {
+			if (event instanceof NavigationStart) {
+				this.hideTopNews = event.url.includes('news-details');
+			}
+		});
 		this.stateCountrySubscription =
 			this.store
 				.pipe(select(selectCountry))
@@ -46,11 +54,12 @@ export class NewsPageComponent implements OnInit, OnDestroy {
 		this.stateCountrySubscription.unsubscribe();
 		this.stateArticlesSubscription.unsubscribe();
 		this.stateLoadingSubscription.unsubscribe();
+		this.routerSubscription.unsubscribe();
 	}
 
 	public onShowArticleDetails(article: ArticleModel): void {
 		this.store.dispatch(new NewsActions.ShowArticleDetails(article));
-		this.router.navigate(['news-details']);
+		this.router.navigate(['top-news', 'news-details']);
 	}
 
 }

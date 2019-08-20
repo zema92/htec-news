@@ -8,31 +8,26 @@ import { CategoriesNewsPageComponent } from './pages/categories-news-page/catego
 
 const routes: Routes = [
 	{
-		path: '',
-		redirectTo: 'top-news',
-		pathMatch: 'full'
-	},
-	{
 		path: 'top-news',
-		component: NewsPageComponent
-	},
-	{
-		path: 'categories',
-		component: CategoriesPageComponent,
+		component: NewsPageComponent,
 		children: [
 			{
-				path: 'news',
-				component: CategoriesNewsPageComponent
+				path: 'news-details',
+				component: TopNewsDetailsComponent
 			}
 		]
 	},
 	{
-		path: 'search',
-		component: SearchPageComponent
+		path: 'categories',
+		component: CategoriesPageComponent,
 	},
 	{
-		path: 'news-details',
-		component: TopNewsDetailsComponent
+		path: 'categories/:category',
+		component: CategoriesNewsPageComponent
+	},
+	{
+		path: 'search',
+		component: SearchPageComponent
 	}
 ];
 

@@ -70,12 +70,11 @@ export class CategoriesPageComponent implements OnInit, OnDestroy {
 
 	public onShowArticleDetails(article: ArticleModel): void {
 		this.store.dispatch(new NewsActions.ShowArticleDetails(article));
-		this.router.navigate(['news-details']);
+		this.router.navigate(['top-news', 'news-details']);
 	}
 
 	public onShowNewsForCategory(category: string): void {
-		this.store.dispatch(new NewsActions.ChangeCategory(category));
-		this.router.navigate(['categories', 'news']);
+		this.router.navigate(['categories', category]);
 	}
 
 }

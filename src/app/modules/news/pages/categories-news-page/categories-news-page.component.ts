@@ -3,7 +3,7 @@ import { Subscription, combineLatest } from 'rxjs';
 import { ArticleModel } from 'src/app/core/models/article.model';
 import { Store, select } from '@ngrx/store';
 import { Router } from '@angular/router';
-import { selectCountry, selectArticles, selectLoading, selectCategory } from '../../store/news.selectors';
+import { selectCountry, selectArticles, selectLoading } from '../../store/news.selectors';
 import * as fromApp from '../../../../core/store/app.reducer';
 import * as NewsActions from '../../store/news.actions';
 
@@ -15,7 +15,7 @@ import * as NewsActions from '../../store/news.actions';
 })
 export class CategoriesNewsPageComponent implements OnInit {
 
-	private stateCountryCategorySubscription: Subscription;
+	private stateCountrySubscription: Subscription;
 	private stateArticlesSubscription: Subscription;
 	private stateLoadingSubscription: Subscription;
 
@@ -24,19 +24,24 @@ export class CategoriesNewsPageComponent implements OnInit {
 	public country: string;
 	public category: string;
 
-	constructor(private store: Store<fromApp.AppState>, private router: Router) { }
+	constructor(
+		private store: Store<fromApp.AppState>,
+		private router: Router
+	) { }
 
 	ngOnInit() {
-		this.stateCountryCategorySubscription = combineLatest(
-			this.store.pipe(select(selectCountry)),
-			this.store.pipe(select(selectCategory))
-		).subscribe(([country, category]) => {
-			this.country = country;
-			this.category = category;
-			this.store.dispatch(new NewsActions.FetchTopNewsByCountryAndCategory({
-				country: country, category: category
-			}));
-		});
+		this.category = this.router.url.split('/').pop();
+		this.store.dispatch(new NewsActions.ChangeCategory(this.category));
+
+		this.stateCountrySubscription =
+			this.store
+				.pipe(select(selectCountry))
+				.subscribe((country) => {
+					this.country = country;
+					this.store.dispatch(new NewsActions.FetchTopNewsByCountryAndCategory({
+						country: country, category: this.category
+					}));
+				});
 		this.stateArticlesSubscription =
 			this.store
 				.pipe(select(selectArticles))
@@ -48,14 +53,14 @@ export class CategoriesNewsPageComponent implements OnInit {
 	}
 
 	ngOnDestroy(): void {
-		this.stateCountryCategorySubscription.unsubscribe();
+		this.stateCountrySubscription.unsubscribe();
 		this.stateArticlesSubscription.unsubscribe();
 		this.stateLoadingSubscription.unsubscribe();
 	}
 
 	public onShowArticleDetails(article: ArticleModel): void {
 		this.store.dispatch(new NewsActions.ShowArticleDetails(article));
-		this.router.navigate(['news-details']);
+		this.router.navigate(['top-news', 'news-details']);
 	}
 
 }

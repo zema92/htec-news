@@ -11,10 +11,10 @@
 		</button>
 	</nav>
 	<div class="d-flex languages">
-		<button class="d-flex btn btn-secondary mr-2" [disabled]="articleDetails" [ngClass]="{'active': !isUsaActiveLang}" (click)="changeLanguage()">
+		<button class="d-flex btn btn-secondary mr-2" [disabled]="isDetailsPage" [ngClass]="{'active': !isUsaActiveLang}" (click)="changeLanguage()">
 			<img class="w-100" alt="" src="../../../../../assets/images/united-kingdom.png" />
 		</button>
-		<button class="d-flex btn btn-secondary" [disabled]="articleDetails" [ngClass]="{'active': isUsaActiveLang}" (click)="changeLanguage('usa')">
+		<button class="d-flex btn btn-secondary" [disabled]="isDetailsPage" [ngClass]="{'active': isUsaActiveLang}" (click)="changeLanguage('usa')">
 			<img class="w-100" alt="" src="../../../../../assets/images/united-states-of-america.png" />
 		</button>
 	</div>

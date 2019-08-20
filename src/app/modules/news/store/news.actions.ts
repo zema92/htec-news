@@ -10,6 +10,7 @@ export const STORE_NEWS = '[News] Store News';
 export const SHOW_ARTICLE_DETAILS = '[News] Show Article Details';
 export const HIDE_ARTICLE_DETAILS = '[News] Hide Article Details';
 export const FETCH_TOP_FIVE_NEWS_BY_COUNTRY_AND_CATEGORY = '[News] Fetch Top Five News By Country And Category';
+export const SEARCH_TOP_NEWS = '[News] Search Top News';
 
 
 export class ChangeCountry implements Action {
@@ -60,6 +61,12 @@ export class FetchTopNewsByCountryAndCategory implements Action {
 	constructor(public payload: { country: string, category: string }) {}
 }
 
+export class SearchTopNews implements Action {
+	readonly type = SEARCH_TOP_NEWS;
+
+	constructor(public payload: { country: string, searchTerm: string }) {}
+}
+
 export type NewsActionTypes =
 	ChangeCountry |
 	ChangeCategory |
@@ -67,5 +74,6 @@ export type NewsActionTypes =
 	FetchTopNewsByCountryAndCategory |
 	FetchTopFiveNewsByCountryAndCategory |
 	StoreTopNews |
+	SearchTopNews |
 	ShowArticleDetails |
 	HideArticleDetails;

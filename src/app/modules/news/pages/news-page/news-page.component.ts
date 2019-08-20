@@ -3,7 +3,7 @@ import { Store, select } from '@ngrx/store';
 import * as fromApp from '../../../../core/store/app.reducer';
 import * as NewsActions from '../../store/news.actions';
 import { Subscription } from 'rxjs';
-import { selectCountry, selectArticles, selectArticleDetails, selectLoading } from '../../store/news.selectors';
+import { selectCountry, selectArticles, selectLoading } from '../../store/news.selectors';
 import { ArticleModel } from 'src/app/core/models/article.model';
 import { Router } from '@angular/router';
 

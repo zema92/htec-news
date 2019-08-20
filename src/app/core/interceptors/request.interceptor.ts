@@ -10,7 +10,7 @@ export class RequestInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		request = request.clone({
 			setParams: {
-				apiKey: '59eb992498dc4c08a443f38627c2cf92'
+				apiKey: 'b7570c735c1646bca28bd485dbf4f0cb'
 			}
 		});
 

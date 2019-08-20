@@ -83,6 +83,14 @@ export function newsReducer(
 				loading: true
 			};
 
+			case NewsActions.SEARCH_TOP_NEWS:
+				return {
+					...state,
+					searchTerm: action.payload.searchTerm,
+					country: action.payload.country,
+					loading: true
+				};
+
 		default:
 			return state;
 	}

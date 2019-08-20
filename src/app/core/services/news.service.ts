@@ -22,4 +22,11 @@ export class NewsService {
 
 		return this.http.get<NewsModel>(`${environment.apiUrl}`, { params });
 	}
+
+	public searchNewsByCountry(country: string, searchTerm: string): Observable<NewsModel> {
+		const params = new HttpParams().set('country', country).set('q', searchTerm);
+
+		return this.http.get<NewsModel>(`${environment.apiUrl}`, { params });
+	}
+
 }

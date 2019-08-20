@@ -49,4 +49,16 @@ export class NewsEffects {
 		)
 	);
 
+	@Effect()
+	searchNews$ = this.actions$.pipe(
+		ofType(NewsActions.SEARCH_TOP_NEWS),
+		mergeMap((effect: NewsActions.SearchTopNews) =>
+			this.newsService
+				.searchNewsByCountry(effect.payload.country, effect.payload.searchTerm)
+				.pipe(
+					map((news: NewsModel) => ({ type: NewsActions.STORE_NEWS, payload: news }))
+				)
+		)
+	);
+
 }

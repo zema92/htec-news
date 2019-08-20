@@ -11,6 +11,7 @@ import * as fromApp from './store/app.reducer';
 
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 		}),
 		EffectsModule.forRoot([NewsEffects]),
 		AccordionModule.forRoot(),
-		CarouselModule.forRoot()
+		CarouselModule.forRoot(),
+		AlertModule.forRoot()
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true }

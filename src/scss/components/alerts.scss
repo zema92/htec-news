@@ -1,0 +1,8 @@
+@import '../variables';
+
+.alert {
+	background-color: $secondary-btn-color;
+	border: 1px solid #fd397a;
+	padding: 1rem 2rem;
+    color: #fff;
+}

@@ -12,6 +12,7 @@ import { CategoriesNewsComponent } from './components/categories-news/categories
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { CategoriesNewsPageComponent } from './pages/categories-news-page/categories-news-page.component';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { CategoriesNewsPageComponent } from './pages/categories-news-page/catego
 		CommonModule,
 		NewsRoutingModule,
 		AccordionModule,
-		CarouselModule
+		CarouselModule,
+		AlertModule
 	]
 })
 export class NewsModule { }

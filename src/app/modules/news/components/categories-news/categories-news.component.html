@@ -152,7 +152,6 @@
 		[singleSlideOffset]="singleSlideOffset"
 		[interval]="false"
 		[noWrap]="!noWrap"
-		[startFromIndex]="0"
 	>
 		<slide *ngFor="let slide of slides; trackBy: slide?.title">
 			<app-top-news-item [article]="slide" (showArticleDetails)="onMore($event)"></app-top-news-item>

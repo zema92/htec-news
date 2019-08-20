@@ -14,28 +14,20 @@ import { Router, RouterEvent, NavigationStart } from '@angular/router';
 })
 export class CategoriesPageComponent implements OnInit, OnDestroy {
 
-	private stateCountryCategorySubscription: Subscription;
+	private stateCountrySubscription: Subscription;
 	private stateArticlesSubscription: Subscription;
 	private stateLoadingSubscription: Subscription;
-	private routerSubscription: Subscription;
 
 	public country: string;
 	public articles: ArticleModel[];
 	public loading: boolean;
 	public category: string;
-	public hideCategories: boolean;
 
 	constructor(private store: Store<fromApp.AppState>, private router: Router) { }
 
 	ngOnInit() {
-		this.hideCategories = this.router.url.includes('news');
-		this.stateCountryCategorySubscription = combineLatest(
-			this.store.pipe(select(selectCountry)),
-			this.store.pipe(select(selectCategory))
-		)
-		.subscribe(([country, category]) => {
+		this.stateCountrySubscription =	this.store.pipe(select(selectCountry)).subscribe((country: string) => {
 			this.country = country;
-			this.category = category;
 			this.store.dispatch(new NewsActions.FetchTopFiveNewsByCountryAndCategory({
 				country: this.country, category: this.category
 			}));
@@ -48,21 +40,16 @@ export class CategoriesPageComponent implements OnInit, OnDestroy {
 			this.store
 				.pipe(select(selectLoading))
 				.subscribe((loading: boolean) => this.loading = loading);
-		this.routerSubscription = this.router.events.subscribe((event: RouterEvent) => {
-			if (event instanceof NavigationStart) {
-				this.hideCategories = event.url.includes('news');
-			}
-		});
 	}
 
 	ngOnDestroy(): void {
-		this.stateCountryCategorySubscription.unsubscribe();
+		this.stateCountrySubscription.unsubscribe();
 		this.stateArticlesSubscription.unsubscribe();
 		this.stateLoadingSubscription.unsubscribe();
-		this.routerSubscription.unsubscribe();
 	}
 
 	public onFetchNewsForCategory(category: string): void {
+		this.category = category;
 		setTimeout(() => {
 			this.store.dispatch(new NewsActions.FetchTopFiveNewsByCountryAndCategory({ country: this.country, category }));
 		}, 100);

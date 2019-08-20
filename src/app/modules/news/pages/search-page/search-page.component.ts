@@ -20,7 +20,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 	private stateLoadingSubscription: Subscription;
 
 	public searchTerm$ = new BehaviorSubject<string>('');
-	public searchTerm: string = '';
+	public searchTerm: string;
 	public country: string;
 	public articles: ArticleModel[];
 	public loading: boolean;

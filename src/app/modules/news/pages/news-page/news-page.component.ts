@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { selectCountry, selectArticles, selectLoading } from '../../store/news.selectors';
 import { ArticleModel } from 'src/app/core/models/article.model';
 import { Router, NavigationStart, RouterEvent } from '@angular/router';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
 	selector: 'app-news-page',
@@ -24,7 +25,7 @@ export class NewsPageComponent implements OnInit, OnDestroy {
 	public loading: boolean;
 	public hideTopNews: boolean;
 
-	constructor(private store: Store<fromApp.AppState>, private router: Router) { }
+	constructor(private store: Store<fromApp.AppState>, private router: Router, private localSt: LocalStorageService) { }
 
 	ngOnInit() {
 		this.hideTopNews = this.router.url.includes('news-details');

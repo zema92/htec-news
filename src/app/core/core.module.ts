@@ -14,6 +14,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { ResponseInterceptor } from './interceptors/response.interceptor';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxWebstorageModule } from 'ngx-webstorage';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { ToastrModule } from 'ngx-toastr';
 			easeTime: 500,
 			preventDuplicates: true
 		}),
+		NgxWebstorageModule.forRoot()
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },

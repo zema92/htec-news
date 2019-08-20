@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import * as fromApp from '../../../../core/store/app.reducer';
 import { selectArticleDetails } from '../../store/news.selectors';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
 	selector: 'app-top-news-details',
@@ -18,17 +19,19 @@ export class TopNewsDetailsComponent implements OnInit {
 
 	public articleDetails: ArticleModel;
 
-	constructor(private store: Store<fromApp.AppState>, private location: Location) { }
+	constructor(private store: Store<fromApp.AppState>, private location: Location, private localSt: LocalStorageService) { }
 
 	ngOnInit() {
 		this.stateArticleDetailsSubscription =
 			this.store
 				.pipe(select(selectArticleDetails))
 				.subscribe((articleDetails: ArticleModel) => {
+					this.articleDetails = articleDetails;
+
 					if (!articleDetails) {
-						this.location.back();
+						this.articleDetails = this.localSt.retrieve('articleDetails');
 					} else {
-						this.articleDetails = articleDetails;
+						this.localSt.store('articleDetails', articleDetails);
 					}
 				});
 	}

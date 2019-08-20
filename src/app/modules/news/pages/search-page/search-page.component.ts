@@ -6,6 +6,7 @@ import * as fromApp from '../../../../core/store/app.reducer';
 import * as NewsActions from '../../store/news.actions';
 import { selectCountry, selectArticles, selectLoading } from '../../store/news.selectors';
 import { ArticleModel } from 'src/app/core/models/article.model';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 	public articles: ArticleModel[];
 	public loading: boolean;
 
-	constructor(private store: Store<fromApp.AppState>) { }
+	constructor(private store: Store<fromApp.AppState>, private router: Router) { }
 
 	ngOnInit() {
 		this.stateArticlesSubscription =
@@ -54,6 +55,11 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 		this.stateCountrSearchTermSubscription.unsubscribe();
 		this.stateArticlesSubscription.unsubscribe();
 		this.stateLoadingSubscription.unsubscribe();
+	}
+
+	public onShowArticleDetails(article: ArticleModel): void {
+		this.store.dispatch(new NewsActions.ShowArticleDetails(article));
+		this.router.navigate(['top-news', 'news-details']);
 	}
 
 }

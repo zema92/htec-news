@@ -1,4 +1,5 @@
 @import '../../../../../scss/variables';
+@import '../../../../../scss/mixins';
 
 .categories {
 
@@ -9,6 +10,10 @@
 	&__container {
 		background-color: $primary-btn-background-color;
 		padding: 2rem;
+
+		@include mobile() {
+			padding: 0;
+		}
 	}
 
 	&__accordion-heading {
@@ -33,6 +38,14 @@
 				display: flex;
 				justify-content: center;
 				width: 16px;
+
+				@include mobile() {
+					width: auto;
+				}
+			}
+
+			@include mobile() {
+				width: 21px;
 			}
 		}
 	}

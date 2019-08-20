@@ -1,11 +1,16 @@
 @import '../variables';
+@import '../mixins';
 
 .carousel {
 	padding: 0 3.9rem;
 	outline: none;
 
 	&-inner {
-		height: 770px;
+		min-height: 720px;
+
+		@include mobile() {
+			min-height: 650px;
+		}
 	}
 
 	&-item {

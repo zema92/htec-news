@@ -1,3 +1,5 @@
+@import '../mixins';
+
 .panel {
 	&-heading {
 		background-color: #f7f8fa;
@@ -9,8 +11,12 @@
 
 	&-body {
 		position: relative;
-		height: 800px;
+		min-height: 800px;
 		text-align: center;
+
+		@include mobile() {
+			min-height: 700px;
+		}
 	}
 
 	.accordion-toggle {

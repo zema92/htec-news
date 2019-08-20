@@ -4,8 +4,7 @@ import { ArticleModel } from 'src/app/core/models/article.model';
 @Component({
 	selector: 'app-categories-news',
 	templateUrl: './categories-news.component.html',
-	styleUrls: ['./categories-news.component.scss'],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	styleUrls: ['./categories-news.component.scss']
 })
 export class CategoriesNewsComponent implements OnInit {
 
@@ -32,6 +31,7 @@ export class CategoriesNewsComponent implements OnInit {
 	constructor() { }
 
 	ngOnInit() {
+		this.itemsPerSlide = window.innerWidth <= 1440 ? (window.innerWidth <= 992 ? 1 : 2) : 3;
 	}
 
 	public onAccordionOpen(isOpen: boolean, category: string): void {

@@ -1,8 +1,18 @@
 @import '../../../scss/variables';
+@import '../../../scss/mixins';
 
 nav {
     align-items: center;
 	min-height: 48px;
+
+	@include mobile() {
+		flex-direction: column;
+		align-items: flex-start;
+
+		button {
+			margin-top: 10px;
+		}
+	}
 }
 
 .languages {

@@ -1,3 +1,9 @@
+@import '../../../../../scss/mixins';
+
 .article {
 	padding: 0 5rem;
+
+	@include mobile() {
+		padding: 0 2rem;
+	}
 }

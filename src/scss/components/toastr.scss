@@ -1,0 +1,11 @@
+@import '../variables';
+
+.toast {
+	&-container {
+		opacity: 0.8;
+	}
+
+	&-error {
+		background-color: $primary-btn-color !important;
+	}
+}

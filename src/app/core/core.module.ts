@@ -12,6 +12,8 @@ import * as fromApp from './store/app.reducer';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { ResponseInterceptor } from './interceptors/response.interceptor';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -27,10 +29,20 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 		EffectsModule.forRoot([NewsEffects]),
 		AccordionModule.forRoot(),
 		CarouselModule.forRoot(),
-		AlertModule.forRoot()
+		AlertModule.forRoot(),
+		ToastrModule.forRoot({
+			timeOut: 15000,
+			positionClass: 'toast-top-right',
+			tapToDismiss: false,
+			closeButton: true,
+			easing: 'ease-in',
+			easeTime: 500,
+			preventDuplicates: true
+		}),
 	],
 	providers: [
-		{ provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true }
+		{ provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
+		{ provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true }
 	],
 	exports: [StoreModule, EffectsModule]
 })

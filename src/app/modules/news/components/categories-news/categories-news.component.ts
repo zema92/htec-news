@@ -25,7 +25,6 @@ export class CategoriesNewsComponent implements OnInit {
 	public itemsPerSlide: number = 3;
 	public singleSlideOffset: boolean = true;
 	public noWrap: boolean = true;
-	public activeIndex: number = 0;
 	public slides: Array<ArticleModel>;
 
 	constructor() { }

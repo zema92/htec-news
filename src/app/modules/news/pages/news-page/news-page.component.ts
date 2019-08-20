@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NewsService } from 'src/app/core/services/news.service';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../../../../core/store/app.reducer';
+import * as NewsActions from '../../store/news.actions';
 
 @Component({
 	selector: 'app-news-page',
@@ -8,10 +10,10 @@ import { NewsService } from 'src/app/core/services/news.service';
 })
 export class NewsPageComponent implements OnInit {
 
-	constructor(private newsService: NewsService) { }
+	constructor(private store: Store<fromApp.AppState>) { }
 
 	ngOnInit() {
-		this.newsService.getTopNewsByCountry('us').subscribe();
+		// this.store.dispatch(new NewsActions.FetchTopNewsByCountry({ country: this.country }));
 	}
 
 }

@@ -11,6 +11,8 @@
 
 html {
 	height: 100vh;
+	font-family: 'Alice', serif;
+
 
 	@include mobile() {
 		font-size: 14px;

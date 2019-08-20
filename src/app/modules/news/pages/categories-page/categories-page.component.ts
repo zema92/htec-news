@@ -28,6 +28,7 @@ export class CategoriesPageComponent implements OnInit, OnDestroy {
 	constructor(private store: Store<fromApp.AppState>, private router: Router) { }
 
 	ngOnInit() {
+		this.hideCategories = this.router.url.includes('news');
 		this.stateCountryCategorySubscription = combineLatest(
 			this.store.pipe(select(selectCountry)),
 			this.store.pipe(select(selectCategory))
@@ -51,7 +52,7 @@ export class CategoriesPageComponent implements OnInit, OnDestroy {
 			if (event instanceof NavigationStart) {
 				this.hideCategories = event.url.includes('news');
 			}
-		})
+		});
 	}
 
 	ngOnDestroy(): void {

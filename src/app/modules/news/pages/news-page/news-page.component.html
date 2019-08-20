@@ -1,2 +1,11 @@
-<app-top-news-list [articles]="articles" (showArticleDetails)="onShowArticleDetails($event)"></app-top-news-list>
-{{articles}}
+<app-top-news-list
+	*ngIf="articles; else loading"
+	[articles]="articles"
+	(showArticleDetails)="onShowArticleDetails($event)"
+></app-top-news-list>
+<ng-template #loading>
+	<div class="spinner-border" role="status">
+		<span class="sr-only">Loading...</span>
+	</div>
+</ng-template>
+

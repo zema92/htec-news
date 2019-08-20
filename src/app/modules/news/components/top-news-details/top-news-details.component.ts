@@ -23,7 +23,13 @@ export class TopNewsDetailsComponent implements OnInit {
 		this.stateArticleDetailsSubscription =
 			this.store
 				.pipe(select(selectArticleDetails))
-				.subscribe((articleDetails: ArticleModel) => this.articleDetails = articleDetails);
+				.subscribe((articleDetails: ArticleModel) => {
+					if (!articleDetails) {
+						this.location.back();
+					} else {
+						this.articleDetails = articleDetails;
+					}
+				});
 	}
 
 	ngOnDestroy(): void {

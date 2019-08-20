@@ -1,0 +1,14 @@
+@import '../variables';
+
+.spinner {
+	&-border {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		margin: auto;
+		border: .25em solid $primary-btn-color;
+		border-right-color: transparent;
+	}
+}

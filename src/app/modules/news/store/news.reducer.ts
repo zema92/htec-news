@@ -7,6 +7,7 @@ export interface NewsState {
 	totalResults: number;
 	country: string;
 	loading: boolean;
+	articleDetails: ArticleModel;
 }
 
 const initialState: NewsState = {
@@ -14,6 +15,7 @@ const initialState: NewsState = {
 	totalResults: 0,
 	country: 'us',
 	loading: false,
+	articleDetails: null,
 };
 
 export function newsReducer(
@@ -41,6 +43,19 @@ export function newsReducer(
 				totalResults: action.payload.totalRecords,
 				loading: false
 			};
+
+		case NewsActions.SHOW_ARTICLE_DETAILS:
+			return {
+				...state,
+				articleDetails: action.payload
+			};
+
+		case NewsActions.HIDE_ARTICLE_DETAILS:
+			return {
+				...state,
+				articleDetails: null
+			};
+
 		default:
 			return state;
 	}

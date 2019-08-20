@@ -1,0 +1,15 @@
+<div class="container-fluid article">
+	<h1 class="mb-3">{{ articleDetails?.title }}</h1>
+	<div class="text-center">
+		<ng-container *ngIf="articleDetails?.urlToImage; else noImgTemplate">
+			<img class="mt-5 w-50" alt="" [src]="articleDetails?.urlToImage">
+		</ng-container>
+		<ng-template #noImgTemplate>
+			<div class="text-center">
+				<img class="img-fluid" alt="" src="assets/images/newsplaceholder.jpg" />
+			</div>
+		</ng-template>
+	</div>
+	<h5 class="mt-5 mb-5">{{ articleDetails?.content }}</h5>
+	<button class="btn btn-primary" (click)="onBack()">Back to the previous page</button>
+</div>

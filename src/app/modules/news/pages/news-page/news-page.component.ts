@@ -3,8 +3,9 @@ import { Store, select } from '@ngrx/store';
 import * as fromApp from '../../../../core/store/app.reducer';
 import * as NewsActions from '../../store/news.actions';
 import { Subscription } from 'rxjs';
-import { selectCountry, selectArticles } from '../../store/news.selectors';
+import { selectCountry, selectArticles, selectArticleDetails } from '../../store/news.selectors';
 import { ArticleModel } from 'src/app/core/models/article.model';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-news-page',
@@ -18,7 +19,7 @@ export class NewsPageComponent implements OnInit, OnDestroy {
 
 	public articles: ArticleModel[];
 
-	constructor(private store: Store<fromApp.AppState>) { }
+	constructor(private store: Store<fromApp.AppState>, private router: Router) { }
 
 	ngOnInit() {
 		this.stateCountrySubscription =
@@ -36,6 +37,11 @@ export class NewsPageComponent implements OnInit, OnDestroy {
 	ngOnDestroy(): void {
 		this.stateCountrySubscription.unsubscribe();
 		this.stateArticlesSubscription.unsubscribe();
+	}
+
+	public onShowArticleDetails(article: ArticleModel): void {
+		this.store.dispatch(new NewsActions.ShowArticleDetails(article));
+		this.router.navigate(['news-details']);
 	}
 
 }

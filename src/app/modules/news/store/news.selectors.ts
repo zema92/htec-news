@@ -24,3 +24,8 @@ export const selectLoading = createSelector(
 	selectNewsState,
 	(state: fromNews.NewsState) => state.loading
 );
+
+export const selectArticleDetails = createSelector(
+	selectNewsState,
+	(state: fromNews.NewsState) => state.articleDetails
+);

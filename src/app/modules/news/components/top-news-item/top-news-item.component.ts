@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ArticleModel } from 'src/app/core/models/article.model';
 
 @Component({
@@ -9,10 +9,14 @@ import { ArticleModel } from 'src/app/core/models/article.model';
 export class TopNewsItemComponent implements OnInit {
 
 	@Input() public article: ArticleModel;
+	@Output() private showArticleDetails: EventEmitter<ArticleModel> = new EventEmitter<ArticleModel>();
 
 	constructor() { }
 
 	ngOnInit() {
 	}
 
+	public onMore(): void {
+		this.showArticleDetails.emit(this.article);
+	}
 }

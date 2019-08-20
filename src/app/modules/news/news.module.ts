@@ -5,6 +5,8 @@ import { CategoriesPageComponent } from './pages/categories-page/categories-page
 import { SearchPageComponent } from './pages/search-page/search-page.component';
 import { TopNewsListComponent } from './components/top-news-list/top-news-list.component';
 import { TopNewsItemComponent } from './components/top-news-item/top-news-item.component';
+import { TopNewsDetailsComponent } from './components/top-news-details/top-news-details.component';
+import { NewsRoutingModule } from './news-routing.module';
 
 
 @NgModule({
@@ -13,10 +15,12 @@ import { TopNewsItemComponent } from './components/top-news-item/top-news-item.c
 		CategoriesPageComponent,
 		SearchPageComponent,
 		TopNewsListComponent,
-		TopNewsItemComponent
+		TopNewsItemComponent,
+		TopNewsDetailsComponent
 	],
 	imports: [
-		CommonModule
+		CommonModule,
+		NewsRoutingModule
 	]
 })
 export class NewsModule { }

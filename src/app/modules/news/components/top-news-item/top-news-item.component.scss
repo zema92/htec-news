@@ -9,15 +9,21 @@
 	&__title {
 		min-height: 140px;
 		text-overflow: ellipsis;
+		text-align: left;
 	}
 
 	&__description {
 		padding: 2rem 0;
+		text-align: left;
 	}
 
 	&__jumbotron {
 		background-color: white !important;
 		padding: 2rem;
+
+		> div {
+			min-height: 550px;
+		}
 
 		@include mobile() {
 			padding: 1rem;

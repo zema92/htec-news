@@ -5,6 +5,7 @@ import * as NewsActions from '../../store/news.actions';
 import { Subscription } from 'rxjs';
 import { selectCountry, selectArticles, selectLoading } from '../../store/news.selectors';
 import { ArticleModel } from 'src/app/core/models/article.model';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-categories-page',
@@ -21,7 +22,7 @@ export class CategoriesPageComponent implements OnInit, OnDestroy {
 	public articles: ArticleModel[];
 	public loading: boolean;
 
-	constructor(private store: Store<fromApp.AppState>) { }
+	constructor(private store: Store<fromApp.AppState>, private router: Router) { }
 
 	ngOnInit() {
 		this.stateCountrySubscription =
@@ -50,4 +51,8 @@ export class CategoriesPageComponent implements OnInit, OnDestroy {
 		}, 100);
 	}
 
+	public onShowArticleDetails(article: ArticleModel): void {
+		this.store.dispatch(new NewsActions.ShowArticleDetails(article));
+		this.router.navigate(['news-details']);
+	}
 }

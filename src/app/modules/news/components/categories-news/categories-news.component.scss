@@ -28,6 +28,12 @@
 			border-radius: 50%;
 			color: white;
 			width: 24px;
+
+			&:before {
+				display: flex;
+				justify-content: center;
+				width: 16px;
+			}
 		}
 	}
 }

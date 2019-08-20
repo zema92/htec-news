@@ -1,0 +1,21 @@
+<header class="d-flex justify-content-between">
+	<nav class="d-flex">
+		<button class="d-flex btn btn-link mr-2" [routerLink]="['top-news']" [routerLinkActive]="'active'">
+			<span>Top News</span>
+		</button>
+		<button class="d-flex btn btn-link" [routerLink]="['categories']">
+			<span>Categories</span>
+		</button>
+		<button class="d-flex btn btn-link" [routerLink]="['search']">
+			<span>Search</span>
+		</button>
+	</nav>
+	<div class="d-flex languages">
+		<button class="d-flex btn btn-secondary mr-2" [disabled]="articleDetails" [ngClass]="{'active': !isUsaActiveLang}" (click)="changeLanguage()">
+			<img class="w-100" alt="" src="../../../../../assets/images/united-kingdom.png" />
+		</button>
+		<button class="d-flex btn btn-secondary" [disabled]="articleDetails" [ngClass]="{'active': isUsaActiveLang}" (click)="changeLanguage('usa')">
+			<img class="w-100" alt="" src="../../../../../assets/images/united-states-of-america.png" />
+		</button>
+	</div>
+</header>

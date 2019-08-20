@@ -1,0 +1,19 @@
+@import '../../../scss/variables';
+
+nav {
+    align-items: center;
+	padding: 2rem;
+	min-height: 48px;
+}
+
+.languages {
+	padding: 2rem;
+
+	button {
+		align-self: center;
+		padding: 0.4rem;
+		border: 3px solid $secondary-btn-background-color;
+		border-radius: 50%;
+		width: 45px;
+	}
+}

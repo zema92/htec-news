@@ -1,1 +1,14 @@
+<header>
+	<nav class="d-flex">
+		<button class="d-flex btn btn-link mr-2" [routerLink]="['top-news']" [routerLinkActive]="'active'">
+			<span>Top News</span>
+		</button>
+		<button class="d-flex btn btn-link" [routerLink]="['categories']">
+			<span>Categories</span>
+		</button>
+		<button class="d-flex btn btn-link" [routerLink]="['search']">
+			<span>Search</span>
+		</button>
+	</nav>
+</header>
 <router-outlet></router-outlet>

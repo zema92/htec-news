@@ -1,0 +1,58 @@
+@import '../variables';
+
+.btn {
+	&-primary {
+		background-color: $primary-btn-background-color !important;
+		color: $primary-btn-color;
+		border: none;
+
+		&:not(:disabled) {
+			transition: 0.3s ease;
+
+			&:hover, &.active, &:active, &:focus {
+				background-color: $primary-btn-color !important;
+				border-color: $primary-btn-color !important;
+				box-shadow: 0 0 0 0.1rem rgba(113, 106, 202, 0.37) !important;
+				color: white;
+			}
+		}
+
+		&:disabled {
+			cursor: not-allowed;
+		}
+	}
+
+	&-secondary {
+		background-color: $secondary-btn-background-color !important;
+		color: $secondary-btn-color;
+
+		&:not(:disabled) {
+			transition: 0.3s ease;
+
+			&:hover, &.active, &:active, &:focus {
+				background-color: $secondary-btn-color !important;
+				border-color: $secondary-btn-color !important;
+				box-shadow: 0 0 0 .1rem rgba(255, 0, 108, 0.41) !important;
+				color: white;
+			}
+		}
+
+		&:disabled {
+			cursor: not-allowed;
+		}
+	}
+
+	&-link {
+		&.active, &:hover, &:focus {
+			background-color: $secondary-btn-background-color !important;
+			text-decoration: none;
+
+			span {
+				color: $secondary-btn-color;
+				font-weight: 500;
+				transition: all .3s;
+				font-size: 1.4rem;
+			}
+		}
+	}
+}

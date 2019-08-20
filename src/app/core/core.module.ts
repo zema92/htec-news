@@ -9,6 +9,9 @@ import { NewsEffects } from '../modules/news/store/news.effect';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import * as fromApp from './store/app.reducer';
 
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+
 
 @NgModule({
 	declarations: [],
@@ -20,7 +23,9 @@ import * as fromApp from './store/app.reducer';
 			maxAge: 25,
 			logOnly: environment.production,
 		}),
-		EffectsModule.forRoot([NewsEffects])
+		EffectsModule.forRoot([NewsEffects]),
+		AccordionModule.forRoot(),
+		CarouselModule.forRoot()
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true }

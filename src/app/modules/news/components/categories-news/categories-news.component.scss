@@ -1,0 +1,33 @@
+@import '../../../../../scss/variables';
+
+.categories {
+
+	h1 {
+		padding-left: 21px;
+	}
+
+	&__container {
+		background-color: $primary-btn-background-color;
+		padding: 2rem;
+	}
+
+	&__accordion-heading {
+		button, i {
+			&:hover {
+				h5, i {
+					color: $primary-btn-color;
+				}
+			}
+		}
+
+		> i {
+			display: flex;
+			justify-content: center;
+			background-color: $primary-btn-color;
+			padding: 0.25rem;
+			border-radius: 50%;
+			color: white;
+			width: 24px;
+		}
+	}
+}

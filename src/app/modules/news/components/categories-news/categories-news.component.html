@@ -1,0 +1,147 @@
+<div class="categories mt-5">
+	<h1 class="mb-4">Top 5 news by categories from {{ country === 'us' ? 'United States of America' : 'Great Britain' }}:</h1>
+	<div class="container-fluid categories__container">
+		<accordion [isAnimated]="true" [closeOthers]="true">
+			<accordion-group #accordionBusiness (isOpenChange)="onAccordionOpen($event, 'business')">
+				<div class="d-flex align-items-center categories__accordion-heading" accordion-heading>
+					<button class="btn btn-link d-flex align-items-center" (click)="onShowNewsForCategory($event, 'business')">
+						<i class="fas fa-briefcase"></i>
+						<h5 class="ml-3">Business</h5>
+					</button>
+					<ng-container *ngIf="accordionBusiness.isOpen; else rightArrow">
+						<i class="fas fa-chevron-down"></i>
+					</ng-container>
+					<ng-template #rightArrow>
+						<i class="fas fa-chevron-right"></i>
+					</ng-template>
+				</div>
+				<ng-container *ngIf="loading">
+					<div class="spinner-border" role="status">
+						<span class="sr-only">Loading...</span>
+					</div>
+				</ng-container>
+				<ng-container *ngTemplateOutlet="dataLoaded"></ng-container>
+			</accordion-group>
+			<accordion-group #accordionEntertainment (isOpenChange)="onAccordionOpen($event, 'entertainment')">
+				<div class="d-flex align-items-center categories__accordion-heading" accordion-heading>
+					<button class="btn btn-link d-flex align-items-center" (click)="onShowNewsForCategory($event, 'entertainment')">
+						<i class="fas fa-tv"></i>
+						<h5 class="ml-3">Entertainment</h5>
+					</button>
+					<ng-container *ngIf="accordionEntertainment.isOpen; else rightArrow">
+						<i class="fas fa-chevron-down"></i>
+					</ng-container>
+					<ng-template #rightArrow>
+						<i class="fas fa-chevron-right"></i>
+					</ng-template>
+				</div>
+				<ng-container *ngIf="loading">
+					<div class="spinner-border" role="status">
+						<span class="sr-only">Loading...</span>
+					</div>
+				</ng-container>
+				<ng-container *ngTemplateOutlet="dataLoaded"></ng-container>
+			</accordion-group>
+			<accordion-group #accordionGeneral (isOpenChange)="onAccordionOpen($event, 'general')">
+				<div class="d-flex align-items-center categories__accordion-heading" accordion-heading>
+					<button class="btn btn-link d-flex align-items-center" (click)="onShowNewsForCategory($event, 'general')">
+						<i class="far fa-newspaper"></i>
+						<h5 class="ml-3">General</h5>
+					</button>
+					<ng-container *ngIf="accordionGeneral.isOpen; else rightArrow">
+						<i class="fas fa-chevron-down"></i>
+					</ng-container>
+					<ng-template #rightArrow>
+						<i class="fas fa-chevron-right"></i>
+					</ng-template>
+				</div>
+				<ng-container *ngIf="loading">
+					<div class="spinner-border" role="status">
+						<span class="sr-only">Loading...</span>
+					</div>
+				</ng-container>
+				<ng-container *ngTemplateOutlet="dataLoaded"></ng-container>
+			</accordion-group>
+			<accordion-group #accordionHealth (isOpenChange)="onAccordionOpen($event, 'health')">
+				<div class="d-flex align-items-center categories__accordion-heading" accordion-heading>
+					<button class="btn btn-link d-flex align-items-center" (click)="onShowNewsForCategory($event, 'health')">
+						<i class="fas fa-heartbeat"></i>
+						<h5 class="ml-3">Health</h5>
+					</button>
+					<ng-container *ngIf="accordionHealth.isOpen; else rightArrow">
+						<i class="fas fa-chevron-down"></i>
+					</ng-container>
+					<ng-template #rightArrow>
+						<i class="fas fa-chevron-right"></i>
+					</ng-template>
+				</div>
+				<ng-container *ngIf="loading">
+					<div class="spinner-border" role="status">
+						<span class="sr-only">Loading...</span>
+					</div>
+				</ng-container>
+				<ng-container *ngTemplateOutlet="dataLoaded"></ng-container>
+			</accordion-group>
+			<accordion-group #accordionScience (isOpenChange)="onAccordionOpen($event, 'science')">
+				<div class="d-flex align-items-center categories__accordion-heading" accordion-heading>
+					<button class="btn btn-link d-flex align-items-center" (click)="onShowNewsForCategory($event, 'science')">
+						<i class="fas fa-flask"></i>
+						<h5 class="ml-3">Science</h5>
+					</button>
+					<ng-container *ngIf="accordionScience.isOpen; else rightArrow">
+						<i class="fas fa-chevron-down"></i>
+					</ng-container>
+					<ng-template #rightArrow>
+						<i class="fas fa-chevron-right"></i>
+					</ng-template>
+				</div>
+				<ng-container *ngIf="loading">
+					<div class="spinner-border" role="status">
+						<span class="sr-only">Loading...</span>
+					</div>
+				</ng-container>
+				<ng-container *ngTemplateOutlet="dataLoaded"></ng-container>
+			</accordion-group>
+			<accordion-group #accordionSports (isOpenChange)="onAccordionOpen($event, 'sports')">
+				<div class="d-flex align-items-center categories__accordion-heading" accordion-heading>
+					<button class="btn btn-link d-flex align-items-center" (click)="onShowNewsForCategory($event, 'sports')">
+						<i class="fas fa-football-ball"></i>
+						<h5 class="ml-3">Sports</h5>
+					</button>
+					<ng-container *ngIf="accordionSports.isOpen; else rightArrow">
+						<i class="fas fa-chevron-down"></i>
+					</ng-container>
+					<ng-template #rightArrow>
+						<i class="fas fa-chevron-right"></i>
+					</ng-template>
+				</div>
+				<ng-container *ngIf="loading">
+					<div class="spinner-border" role="status">
+						<span class="sr-only">Loading...</span>
+					</div>
+				</ng-container>
+				<ng-container *ngTemplateOutlet="dataLoaded"></ng-container>
+			</accordion-group>
+			<accordion-group #accordionTech (isOpenChange)="onAccordionOpen($event, 'technology')">
+				<div class="d-flex align-items-center categories__accordion-heading" accordion-heading>
+					<button class="btn btn-link d-flex align-items-center" (click)="onShowNewsForCategory($event, 'technology')">
+						<i class="fas fa-robot"></i>
+						<h5 class="ml-3">Technology</h5>
+					</button>
+					<ng-container *ngIf="accordionTech.isOpen; else rightArrow">
+						<i class="fas fa-chevron-down"></i>
+					</ng-container>
+					<ng-template #rightArrow>
+						<i class="fas fa-chevron-right"></i>
+					</ng-template>
+				</div>
+				<ng-container *ngIf="loading">
+					<div class="spinner-border" role="status">
+						<span class="sr-only">Loading...</span>
+					</div>
+				</ng-container>
+				<ng-container *ngTemplateOutlet="dataLoaded"></ng-container>
+			</accordion-group>
+		</accordion>
+	</div>
+</div>

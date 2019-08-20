@@ -7,6 +7,11 @@ import { NgModule } from '@angular/core';
 
 const routes: Routes = [
 	{
+		path: '',
+		redirectTo: 'top-news',
+		pathMatch: 'full'
+	},
+	{
 		path: 'top-news',
 		component: NewsPageComponent
 	},

@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import './scss/variables';
 @import './scss/components/buttons';
-@import './scss/components/spinners';
+@import './scss/components/spinner';
+@import './scss/components/accordion';
 
 html {
 	height: 100vh;

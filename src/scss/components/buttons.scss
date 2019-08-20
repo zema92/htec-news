@@ -44,7 +44,6 @@
 
 	&-link {
 		&.active, &:hover, &:focus {
-			background-color: $secondary-btn-background-color !important;
 			text-decoration: none;
 
 			span {

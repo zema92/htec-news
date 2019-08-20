@@ -7,6 +7,10 @@ import { TopNewsListComponent } from './components/top-news-list/top-news-list.c
 import { TopNewsItemComponent } from './components/top-news-item/top-news-item.component';
 import { TopNewsDetailsComponent } from './components/top-news-details/top-news-details.component';
 import { NewsRoutingModule } from './news-routing.module';
+import { CategoriesNewsComponent } from './components/categories-news/categories-news.component';
+
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 
 @NgModule({
@@ -16,11 +20,14 @@ import { NewsRoutingModule } from './news-routing.module';
 		SearchPageComponent,
 		TopNewsListComponent,
 		TopNewsItemComponent,
-		TopNewsDetailsComponent
+		TopNewsDetailsComponent,
+		CategoriesNewsComponent
 	],
 	imports: [
 		CommonModule,
-		NewsRoutingModule
+		NewsRoutingModule,
+		AccordionModule,
+		CarouselModule
 	]
 })
 export class NewsModule { }

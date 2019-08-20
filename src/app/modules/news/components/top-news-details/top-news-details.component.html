@@ -1,4 +1,4 @@
-<div class="container-fluid article" *ngIf="articleDetails; else loading">
+<div class="container-fluid mt-5 article" *ngIf="articleDetails; else loading">
 	<h1 class="mb-3">{{ articleDetails?.title }}</h1>
 	<div class="text-center">
 		<ng-container *ngIf="articleDetails?.urlToImage; else noImgTemplate">

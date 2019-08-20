@@ -1,0 +1,29 @@
+.panel {
+	&-heading {
+		background-color: #f7f8fa;
+	}
+
+	&-title {
+		color: #74788d;
+	}
+
+	&-body {
+		position: relative;
+		height: 800px;
+		text-align: center;
+	}
+
+	.accordion-toggle {
+		&[aria-expanded="true"] {
+			h5, i {
+				color: $primary-btn-color;
+			}
+		}
+
+		&[aria-expanded="false"] {
+			h5, i {
+				color: #74788d;
+			}
+		}
+	}
+}

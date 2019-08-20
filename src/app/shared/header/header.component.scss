@@ -14,3 +14,11 @@ nav {
 		width: 45px;
 	}
 }
+
+.btn {
+	&-link {
+		&.active, &:hover, &:focus {
+			background-color: $secondary-btn-background-color !important;
+		}
+	}
+}

@@ -1,1 +1,8 @@
-<app-categories-news></app-categories-news>
+<app-categories-news
+	[country]="country"
+	[articles]="articles"
+	[loading]="loading"
+	(fetchNewsForCategory)="onFetchNewsForCategory($event)"
+	(showArticleDetails)="onShowArticleDetails($event)"
+	(showNewsForCategory)="onShowNewsForCategory($event)"
+></app-categories-news>

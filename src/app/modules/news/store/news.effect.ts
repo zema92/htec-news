@@ -19,4 +19,22 @@ export class NewsEffects {
 			))
 	);
 
+	@Effect()
+	fetchFiveNewsByCategory$ = this.actions$.pipe(
+		ofType(NewsActions.FETCH_TOP_FIVE_NEWS_BY_COUNTRY_AND_CATEGORY),
+		mergeMap((effect: NewsActions.FetchTopFiveNewsByCountryAndCategory) =>
+			this.newsService
+				.getTopNewsByCountryAndCategory(effect.payload.country, effect.payload.category)
+				.pipe(
+					map((news: NewsModel) => {
+						news.articles = news.articles.slice(0, 5);
+						news.totalRecords = 5;
+
+						return news;
+					}),
+					map((news: NewsModel) => ({ type: NewsActions.STORE_NEWS, payload: news }))
+				)
+		)
+	);
+
 }

@@ -1,15 +1,53 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import * as fromApp from '../../../../core/store/app.reducer';
+import * as NewsActions from '../../store/news.actions';
+import { Subscription } from 'rxjs';
+import { selectCountry, selectArticles, selectLoading } from '../../store/news.selectors';
+import { ArticleModel } from 'src/app/core/models/article.model';
 
 @Component({
-  selector: 'app-categories-page',
-  templateUrl: './categories-page.component.html',
-  styleUrls: ['./categories-page.component.scss']
+	selector: 'app-categories-page',
+	templateUrl: './categories-page.component.html',
+	styleUrls: ['./categories-page.component.scss']
 })
-export class CategoriesPageComponent implements OnInit {
+export class CategoriesPageComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+	private stateCountrySubscription: Subscription;
+	private stateArticlesSubscription: Subscription;
+	private stateLoadingSubscription: Subscription;
 
-  ngOnInit() {
-  }
+	public country: string;
+	public articles: ArticleModel[];
+	public loading: boolean;
+
+	constructor(private store: Store<fromApp.AppState>) { }
+
+	ngOnInit() {
+		this.stateCountrySubscription =
+			this.store
+				.pipe(select(selectCountry))
+				.subscribe((country: string) => this.country = country);
+		this.stateArticlesSubscription =
+			this.store
+				.pipe(select(selectArticles))
+				.subscribe((articles: ArticleModel[]) => this.articles = articles);
+		this.stateLoadingSubscription =
+			this.store
+				.pipe(select(selectLoading))
+				.subscribe((loading: boolean) => this.loading = loading);
+	}
+
+	ngOnDestroy(): void {
+		this.stateCountrySubscription.unsubscribe();
+		this.stateArticlesSubscription.unsubscribe();
+		this.stateLoadingSubscription.unsubscribe();
+	}
+
+	public onFetchNewsForCategory(category: string): void {
+		setTimeout(() => {
+			this.store.dispatch(new NewsActions.FetchTopFiveNewsByCountryAndCategory({ country: this.country, category }));
+		}, 100);
+	}
 
 }

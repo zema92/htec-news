@@ -9,10 +9,16 @@ import { NewsModel } from '../models/news.model';
 })
 export class NewsService {
 
-	  constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient) { }
 
-	  public getTopNewsByCountry(country: string): Observable<NewsModel> {
+	public getTopNewsByCountry(country: string): Observable<NewsModel> {
 		const params = new HttpParams().set('country', country);
+
+		return this.http.get<NewsModel>(`${environment.apiUrl}`, { params });
+	}
+
+	public getTopNewsByCountryAndCategory(country: string, category: string): Observable<NewsModel> {
+		const params = new HttpParams().set('country', country).set('category', category);
 
 		return this.http.get<NewsModel>(`${environment.apiUrl}`, { params });
 	}

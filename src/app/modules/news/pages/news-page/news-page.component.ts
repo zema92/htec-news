@@ -28,10 +28,10 @@ export class NewsPageComponent implements OnInit, OnDestroy {
 				.subscribe((country: string) => {
 					this.store.dispatch(new NewsActions.FetchTopNewsByCountry(country));
 				});
-			this.stateArticlesSubscription =
-				this.store
-					.pipe(select(selectArticles))
-					.subscribe((articles: ArticleModel[]) => this.articles = articles);
+		this.stateArticlesSubscription =
+			this.store
+				.pipe(select(selectArticles))
+				.subscribe((articles: ArticleModel[]) => this.articles = articles);
 	}
 
 	ngOnDestroy(): void {

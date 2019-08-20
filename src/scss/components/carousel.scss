@@ -1,0 +1,73 @@
+@import '../variables';
+
+.carousel {
+	padding: 0 3.9rem;
+
+	&-inner {
+		height: 770px;
+	}
+
+	&-item {
+		margin-right: 0;
+		width: 100%;
+		height: 100%;
+
+		.item {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: auto;
+
+			img {
+				height: 100%;
+				max-width: 365px;
+				object-fit: cover;
+			}
+		}
+	}
+
+	&-control {
+		&:hover {
+			opacity: 0.8;
+		}
+
+		&-prev, &-next {
+			background: $primary-btn-color;
+			border-radius: 50%;
+			opacity: 1;
+			margin: auto;
+			width: 45px;
+			height: 45px;
+		}
+
+		&-prev {
+			span {
+				position: absolute;
+				right: 13.5px;
+			}
+		}
+
+		&-next {
+			span {
+				position: absolute;
+				left: 13.5px;
+			}
+		}
+	}
+
+	&-indicators {
+		justify-content: space-between;
+		margin: 1rem 37.5% 0;
+
+		li {
+			background-color: $primary-btn-color;
+			opacity: 0.4;
+			width: 60px;
+		}
+	}
+}

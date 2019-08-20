@@ -7,6 +7,8 @@ export const FETCH_NEWS_BY_COUNTRY = '[News] Fetch News By Country';
 export const STORE_NEWS = '[News] Store News';
 export const SHOW_ARTICLE_DETAILS = '[News] Show Article Details';
 export const HIDE_ARTICLE_DETAILS = '[News] Hide Article Details';
+export const FETCH_TOP_FIVE_NEWS_BY_COUNTRY_AND_CATEGORY = '[News] Fetch Top Five News By Country And Category';
+
 
 export class ChangeCountry implements Action {
 	readonly type = CHANGE_COUNTRY;
@@ -38,9 +40,16 @@ export class HideArticleDetails implements Action {
 	constructor() {}
 }
 
+export class FetchTopFiveNewsByCountryAndCategory implements Action {
+	readonly type = FETCH_TOP_FIVE_NEWS_BY_COUNTRY_AND_CATEGORY;
+
+	constructor(public payload: { country: string, category: string }) {}
+}
+
 export type NewsActionTypes =
 	ChangeCountry |
 	FetchTopNewsByCountry |
+	FetchTopFiveNewsByCountryAndCategory |
 	StoreTopNews |
 	ShowArticleDetails |
 	HideArticleDetails;

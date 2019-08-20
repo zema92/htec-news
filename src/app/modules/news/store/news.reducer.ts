@@ -56,6 +56,14 @@ export function newsReducer(
 				articleDetails: null
 			};
 
+		case NewsActions.FETCH_TOP_FIVE_NEWS_BY_COUNTRY_AND_CATEGORY:
+			return {
+				...state,
+				country: action.payload.country,
+				category: action.payload.category,
+				loading: true
+			};
+
 		default:
 			return state;
 	}

@@ -13,7 +13,7 @@ export class NewsEffects {
 	@Effect()
 	fetchNewsByCountry$ = this.actions$.pipe(
 		ofType(NewsActions.FETCH_NEWS_BY_COUNTRY),
-		mergeMap((effect: NewsActions.FetchTopNewsByCountry) => this.newsService.getTopNewsByCountry(effect.payload.country)
+		mergeMap((effect: NewsActions.FetchTopNewsByCountry) => this.newsService.getTopNewsByCountry(effect.payload)
 			.pipe(
 				map((news: NewsModel) => ({ type: NewsActions.STORE_NEWS, payload: news }))
 			))

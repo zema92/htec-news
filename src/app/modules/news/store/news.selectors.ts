@@ -15,6 +15,11 @@ export const selectArticles = createSelector(
 	(state: fromNews.NewsState) => state.articles
 );
 
+export const selectCountry = createSelector(
+	selectNewsState,
+	(state: fromNews.NewsState) => state.country
+);
+
 export const selectLoading = createSelector(
 	selectNewsState,
 	(state: fromNews.NewsState) => state.loading

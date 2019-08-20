@@ -1,0 +1,27 @@
+:host {
+	width: 100%;
+	height: 100%;
+}
+
+.article {
+	&__title {
+		min-height: 140px;
+		text-overflow: ellipsis;
+	}
+
+	&__description {
+		padding: 2rem 0;
+	}
+
+	&__jumbotron {
+		background-color: white !important;
+		padding: 2rem;
+
+		img {
+			justify-self: center;
+			margin-top: 10px;
+			height: 232px;
+			object-fit: cover;
+		}
+	}
+}

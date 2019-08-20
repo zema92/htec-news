@@ -15,7 +15,7 @@ export class ChangeCountry implements Action {
 export class FetchTopNewsByCountry implements Action {
 	readonly type = FETCH_NEWS_BY_COUNTRY;
 
-	constructor(public payload: { country: string }) {}
+	constructor(public payload: string) {}
 }
 
 export class StoreTopNews implements Action {

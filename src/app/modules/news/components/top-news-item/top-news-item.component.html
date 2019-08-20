@@ -1,0 +1,22 @@
+<div class="article d-flex h-100">
+	<div class="jumbotron article__jumbotron d-flex flex-wrap justify-content-end w-100">
+		<div class="w-100">
+			<h4 class="article__title">{{ article.title }}</h4>
+			<ng-container *ngIf="article.urlToImage; else noImgTemplate">
+				<div class="text-center">
+					<img class="img-fluid w-100" alt="" [src]="article.urlToImage">
+				</div>
+			</ng-container>
+			<ng-template #noImgTemplate>
+				<div class="text-center">
+					<img class="img-fluid w-100" alt="" src="assets/images/newsplaceholder.jpg" />
+				</div>
+			</ng-template>
+			<h5 class="article__description">{{ article.description }}</h5>
+		</div>
+		<button class="align-self-end btn btn-primary" (click)="onMore()">
+			<a>More</a>
+			<i class="fas fa-chevron-right ml-3"></i>
+		</button>
+	</div>
+</div>

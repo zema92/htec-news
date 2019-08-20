@@ -30,10 +30,17 @@ export function newsReducer(
 		case NewsActions.FETCH_NEWS_BY_COUNTRY:
 			return {
 				...state,
-				country: action.payload.country,
+				country: action.payload,
 				loading: true
 			};
 
+		case NewsActions.STORE_NEWS:
+			return {
+				...state,
+				articles: action.payload.articles,
+				totalResults: action.payload.totalRecords,
+				loading: false
+			};
 		default:
 			return state;
 	}

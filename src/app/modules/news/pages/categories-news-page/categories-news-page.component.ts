@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription, zip, merge, concat, combineLatest } from 'rxjs';
+import { Subscription, combineLatest } from 'rxjs';
 import { ArticleModel } from 'src/app/core/models/article.model';
 import { Store, select } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { selectCountry, selectArticles, selectLoading, selectCategory } from '../../store/news.selectors';
 import * as fromApp from '../../../../core/store/app.reducer';
 import * as NewsActions from '../../store/news.actions';
-import { concatAll } from 'rxjs/operators';
 
 
 @Component({
@@ -37,7 +36,7 @@ export class CategoriesNewsPageComponent implements OnInit {
 			this.store.dispatch(new NewsActions.FetchTopNewsByCountryAndCategory({
 				country: country, category: category
 			}));
-		})
+		});
 		this.stateArticlesSubscription =
 			this.store
 				.pipe(select(selectArticles))

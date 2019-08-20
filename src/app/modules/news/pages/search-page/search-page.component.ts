@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription, combineLatest } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Store, select } from '@ngrx/store';
 import * as fromApp from '../../../../core/store/app.reducer';
@@ -15,7 +15,7 @@ import { ArticleModel } from 'src/app/core/models/article.model';
 })
 export class SearchPageComponent implements OnInit, OnDestroy {
 
-	private stateCountrySubscription: Subscription;
+	private stateCountrSearchTermSubscription: Subscription;
 	private stateArticlesSubscription: Subscription;
 	private stateLoadingSubscription: Subscription;
 
@@ -27,13 +27,6 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 	constructor(private store: Store<fromApp.AppState>) { }
 
 	ngOnInit() {
-		this.stateCountrySubscription =
-			this.store
-				.pipe(select(selectCountry))
-				.subscribe((country: string) => {
-					this.country = country;
-				});
-
 		this.stateArticlesSubscription =
 			this.store
 				.pipe(select(selectArticles))
@@ -43,17 +36,20 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 			this.store
 				.pipe(select(selectLoading))
 				.subscribe((loading: boolean) => this.loading = loading);
-
-		this.searchTerm$.pipe(
-			debounceTime(200),
-			distinctUntilChanged()
-		).subscribe((searchTerm: string) => this.store.dispatch(new NewsActions.SearchTopNews({
-			country: this.country, searchTerm
-		})));
+		this.stateCountrSearchTermSubscription = combineLatest(
+		this.store.pipe(select(selectCountry)),
+			this.searchTerm$.pipe(
+				debounceTime(200),
+				distinctUntilChanged()
+			))
+			.subscribe(([country, searchTerm]) => {
+				this.country = country;
+				this.store.dispatch(new NewsActions.SearchTopNews({country: country, searchTerm }));
+			});
 	}
 
 	ngOnDestroy() {
-		this.stateCountrySubscription.unsubscribe();
+		this.stateCountrSearchTermSubscription.unsubscribe();
 		this.stateArticlesSubscription.unsubscribe();
 		this.stateLoadingSubscription.unsubscribe();
 	}

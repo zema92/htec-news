@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { ArticleModel } from 'src/app/core/models/article.model';
 
 @Component({
 	selector: 'app-top-news-list',
 	templateUrl: './top-news-list.component.html',
-	styleUrls: ['./top-news-list.component.scss']
+	styleUrls: ['./top-news-list.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TopNewsListComponent implements OnInit {
 

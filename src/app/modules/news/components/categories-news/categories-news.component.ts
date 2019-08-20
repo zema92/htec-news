@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { ArticleModel } from 'src/app/core/models/article.model';
 
 @Component({
 	selector: 'app-categories-news',
 	templateUrl: './categories-news.component.html',
-	styleUrls: ['./categories-news.component.scss']
+	styleUrls: ['./categories-news.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoriesNewsComponent implements OnInit {
 

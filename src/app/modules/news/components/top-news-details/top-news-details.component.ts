@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Location } from '@angular/common';
 import { ArticleModel } from 'src/app/core/models/article.model';
 import { Subscription } from 'rxjs';
@@ -9,7 +9,8 @@ import { selectArticleDetails } from '../../store/news.selectors';
 @Component({
 	selector: 'app-top-news-details',
 	templateUrl: './top-news-details.component.html',
-	styleUrls: ['./top-news-details.component.scss']
+	styleUrls: ['./top-news-details.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TopNewsDetailsComponent implements OnInit {
 

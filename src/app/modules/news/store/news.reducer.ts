@@ -49,15 +49,15 @@ export function newsReducer(
 		case NewsActions.STORE_NEWS:
 			return {
 				...state,
-				articles: action.payload.articles,
-				totalResults: action.payload.totalRecords,
+				articles: action.payload.articles as ArticleModel[],
+				totalResults: action.payload.totalResults,
 				loading: false
 			};
 
 		case NewsActions.SHOW_ARTICLE_DETAILS:
 			return {
 				...state,
-				articleDetails: action.payload
+				articleDetails: action.payload as ArticleModel
 			};
 
 		case NewsActions.HIDE_ARTICLE_DETAILS:
@@ -79,7 +79,6 @@ export function newsReducer(
 				...state,
 				country: action.payload.country,
 				category: action.payload.category,
-				articles: null,
 				loading: true
 			};
 

@@ -20,7 +20,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 	private stateArticlesSubscription: Subscription;
 	private stateLoadingSubscription: Subscription;
 
-	public searchTerm$ = new BehaviorSubject<string>('');
+	public searchTerm$: BehaviorSubject<string> = new BehaviorSubject<string>('');
 	public searchTerm: string;
 	public country: string;
 	public articles: ArticleModel[];
@@ -29,6 +29,18 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 	constructor(private store: Store<fromApp.AppState>, private router: Router) { }
 
 	ngOnInit() {
+		this.stateCountrSearchTermSubscription = combineLatest(
+			this.store.pipe(select(selectCountry)),
+			this.searchTerm$.pipe(
+				debounceTime(200),
+				distinctUntilChanged()
+			))
+			.subscribe(([country, searchTerm]) => {
+				this.country = country;
+				this.searchTerm = searchTerm;
+				this.store.dispatch(new NewsActions.SearchTopNews({ country: country, searchTerm }));
+			});
+
 		this.stateArticlesSubscription =
 			this.store
 				.pipe(select(selectArticles))
@@ -38,17 +50,6 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 			this.store
 				.pipe(select(selectLoading))
 				.subscribe((loading: boolean) => this.loading = loading);
-		this.stateCountrSearchTermSubscription = combineLatest(
-		this.store.pipe(select(selectCountry)),
-			this.searchTerm$.pipe(
-				debounceTime(200),
-				distinctUntilChanged()
-			))
-			.subscribe(([country, searchTerm]) => {
-				this.country = country;
-				this.searchTerm = searchTerm;
-				this.store.dispatch(new NewsActions.SearchTopNews({country: country, searchTerm }));
-			});
 	}
 
 	ngOnDestroy() {
